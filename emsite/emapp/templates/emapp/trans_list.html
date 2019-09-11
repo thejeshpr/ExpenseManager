@@ -1,0 +1,38 @@
+{% extends "emapp/index.html" %}
+
+{% block content %}
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Date</th>        
+        <th scope="col">Source</th>        
+        <th scope="col">Category</th>
+        <th scope="col">Descrption</th>
+        <th scope="col">Pending?</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for transaction in transactions %}      
+          <tr>
+            <th scope="row">{{ transaction.pk }}</th>
+            <th><a href="{% url 'emapp:trans_update' transaction.pk %}">{{ transaction.amount }}</a></th>
+            <td>{{ transaction.date }}</td>
+            <td>{{ transaction.src }}</td>
+            <td>{{ transaction.category }}</td>
+            <td>{{ transaction.desc }}</td>
+            <td>{{ transaction.pending }}</td>            
+          </tr>
+        {% endfor %}
+      
+    </tbody>
+  </table>
+
+  
+
+{% endblock content %}
+  
+
