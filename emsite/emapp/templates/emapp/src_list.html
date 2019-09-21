@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header">
+        <h4>Sources <small>({{ src_cnt }})</small>
+            <div class="float-right">
+                {% if show_view_all %}
+                    <a class="btn btn-primary" href="{% url 'emapp:src_list' %}">View All > </a>            
+                {% endif %}            
+                <a class="btn btn-success" href="{% url 'emapp:src_create' %}">Create New + </a>
+            </div>
+        </h4>
+    </div>            
+
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>                        
+                <th scope="col">Type</th>
+                <th scope="col">Transactions</th> 
+            </tr>
+            </thead>
+            <tbody>
+                {% for source in sources %}
+                    <tr>
+                        <td>{{ source.pk }}</td>
+                        <td><a href="{% url 'emapp:src_update' source.pk %}">{{ source.name }}</a></td>
+                        <td>{{ source.src_type }}</td>
+                        <td>
+                            {{ source.transactions.count }}
+                            <a href="{% url 'emapp:trans_list' %}?src={{ source.pk }}">(view)</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+
+    {% if not show_view_all %}
+        <div class="card-footer">        
+            {% include "emapp/paginate.html" %}        
+        </div>
+    {% endif %}
+
+</div>

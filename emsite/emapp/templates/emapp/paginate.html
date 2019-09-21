@@ -1,0 +1,35 @@
+<nav aria-label="">
+    <ul class="pagination justify-content-center mb-4">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1&q={{ request.GET.q }}">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}&q={{ request.GET.q }}">{{ page_obj.previous_page_number }}</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">First</span>
+            </li>
+        {% endif %}
+            <li class="page-item active">
+                <span class="page-link">
+                {{ page_obj.number }}
+                <span class="sr-only">(current)</span>
+                </span>
+            </li>
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}&q={{ request.GET.q }}">{{ page_obj.next_page_number }}</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&q={{ request.GET.q }}">Last</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Last</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+      

@@ -1,0 +1,28 @@
+{% extends "emapp/index.html" %}
+
+{% block content %}
+    
+    {% include "emapp/stats.html" %}
+
+    <hr style="background: white;">
+
+    {% include "emapp/trans_list.html" %}
+
+    <hr style="background: white;">
+
+    <div class="row">
+        <div class="col-6">
+            {% include "emapp/cat_list.html" %}
+        </div>
+
+        <div class="col-6">        
+            {% include "emapp/src_list.html" %}
+        </div>
+
+    </div>
+
+  
+
+{% endblock content %}
+  
+

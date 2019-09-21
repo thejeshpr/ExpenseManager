@@ -10,9 +10,18 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet"> 
 
 
     <style>
+      body{
+        background:  #464942;
+      }
+
+      .font-test{
+        font-family: 'PT Sans', sans-serif;
+      }
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -40,21 +49,34 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
+
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="{% url 'emapp:trans_create' %}">Transaction</a>
+          <a class="dropdown-item" href="{% url 'emapp:src_create' %}">Source</a>
+          <a class="dropdown-item" href="{% url 'emapp:cat_create' %}">Category</a>
+        </div>
+      </li> -->
+
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'emapp:trans_create' %}">Create <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'emapp:trans_list' %}">Transactions <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="{% url 'emapp:cat_list' %}">Categories</a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'emapp:src_list' %}">Sources</a>
+        </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Transaction</a>
+          <a class="dropdown-item" href="#">Source</a>
+          <a class="dropdown-item" href="#">Category</a>
         </div>
       </li>
     </ul>

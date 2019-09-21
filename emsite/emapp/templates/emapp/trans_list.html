@@ -1,38 +1,60 @@
-{% extends "emapp/index.html" %}
+  <div class="card font-test">
+    <div class="card-header">
+      <h4>Transactions <small>({{ tran_cnt }})</small>
+          <div class="float-right">
+              {% if show_view_all %}
+                  <a class="btn btn-primary" href="{% url 'emapp:trans_list' %}">View All > </a>            
+              {% endif %}            
+              <a class="btn btn-success" href="{% url 'emapp:trans_create' %}">Create New + </a>
+          </div>
+      </h4>      
+    </div>
 
-{% block content %}
-
-<table class="table table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Date</th>        
-        <th scope="col">Source</th>        
-        <th scope="col">Category</th>
-        <th scope="col">Descrption</th>
-        <th scope="col">Pending?</th>
-      </tr>
-    </thead>
-    <tbody>
-
-        {% for transaction in transactions %}      
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead class="thead-dark">
           <tr>
-            <th scope="row">{{ transaction.pk }}</th>
-            <th><a href="{% url 'emapp:trans_update' transaction.pk %}">{{ transaction.amount }}</a></th>
-            <td>{{ transaction.date }}</td>
-            <td>{{ transaction.src }}</td>
-            <td>{{ transaction.category }}</td>
-            <td>{{ transaction.desc }}</td>
-            <td>{{ transaction.pending }}</td>            
+            <th scope="col">#</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>        
+            <th scope="col">Source</th>        
+            <th scope="col">Category</th>
+            <th scope="col">Type</th>
+            <th scope="col">Descrption</th>
+            <th scope="col">Pending?</th>
           </tr>
-        {% endfor %}
-      
-    </tbody>
-  </table>
+        </thead>
+        <tbody>
 
-  
+            {% for transaction in transactions %}      
+              <tr>
+                <th scope="row" class="{% if transaction.typ == 'CR' %} table-success {% else %} table-danger {% endif %}">{{ transaction.pk }}</th>
+                <th><a href="{% url 'emapp:trans_update' transaction.pk %}">{{ transaction.amount }}</a></th>
+                <td>{{ transaction.date|date:"d M, Y"}}</td>
+                <td>
+                  <a href="{% url 'emapp:trans_list' %}?src={{ transaction.src.pk }}">{{ transaction.src }}</a>
+                </td>
+                <td>
+                  <a href="{% url 'emapp:trans_list' %}?cat={{ transaction.category.pk }}">{{ transaction.category }}</a>
+                </td>
+                <td>{{ transaction.typ }}</td>
+                <td>{{ transaction.desc }}</td>
+                <td>{{ transaction.pending }}</td>            
+              </tr>
+            {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
 
-{% endblock content %}
+    <div class="card-footer">        
+        {% if not show_view_all %}      
+            {% include "emapp/paginate.html" %}
+            {% else %}
+              <span><strong>total transactions amount = {{ ttl_trans_amt }}</strong></span>
+        {% endif %}
+      </div>
+
+  </div>
   
 

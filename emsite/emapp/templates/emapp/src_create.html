@@ -1,4 +1,21 @@
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+{% extends "emapp/index.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+          <h2>Source Create</h2>      
+        </div>
+    
+        <div class="card-body">
+            <form method="post">{% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-success">Save Source</button>
+            </form>
+        </div>
+    
+    </div>
+
+{% endblock content %}
