@@ -1,0 +1,9 @@
+Transaction
+    - Amount
+    - Src
+    - Type (credit/debit)
+    - Desc
+    - Date
+    - pending
+    - include_in_calcultion
+    
